@@ -12,6 +12,8 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Post from './pages/Post'
+import CreatePost from './pages/CreatePost'
 
 // Import Context
 import UserContext from './context/UserContext'
@@ -32,14 +34,21 @@ function App() {
           <Router>
             <Header />
             <Routes>
+              {/* HOME */}
+              <Route path='/' element={<Home />} />
+
+              {/* POSTS */}
+              <Route path='/posts/:id' element={<Post />} />
               <Route
-                path='/'
+                path='/posts/create-post'
                 element={
                   <ProtectedRoute redirectPath='/login'>
-                    <Home />
+                    <CreatePost />
                   </ProtectedRoute>
                 }
               />
+
+              {/* AUTH */}
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
             </Routes>

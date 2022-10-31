@@ -42,7 +42,6 @@ exports.createPost = [
       const post = new Post({
         title: req.body.title,
         content: req.body.content,
-        userId: req.user._id,
       }).save((err) => {
         if (err) {
           return next(err)
@@ -57,7 +56,7 @@ exports.createPost = [
 // GET /posts/:id API
 exports.getPost = (req, res, next) => {
   Post.findById(req.params.id)
-    .populate('userId')
+    // .populate('userId')
     .populate('comments')
     .exec((err, post) => {
       if (err) {

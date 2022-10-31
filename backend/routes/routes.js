@@ -13,7 +13,7 @@ router.get('/logout', userController.logout)
 router.get('/user', userController.getUser)
 
 router.get('/posts', postController.getPosts)
-router.post('/posts', postController.createPost)
+router.post('/posts/create-post', postController.createPost)
 router.get('/posts/:id', postController.getPost)
 // router.put('/posts/:id', postController.updatePost)
 // router.delete('/posts/:id', postController.deletePost)

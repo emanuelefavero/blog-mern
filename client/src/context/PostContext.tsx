@@ -5,11 +5,19 @@ import axios from 'axios'
 const PostContext = createContext({
   posts: [] as any,
   getPosts: () => {},
+  post: {} as any,
+  getPost: (id: string) => {},
+  postTitle: '',
+  // TODO: check if this is the best way to do this
+  // or it needs to => '' and without parameters
+  setPostTitle: (title: string) => {},
+  postContent: '',
+  setPostContent: (content: string) => {},
+  createPost: () => {},
 })
 
 export function PostProvider({ children }: { children: React.ReactNode }) {
   const [posts, setPosts] = useState([])
-
   const getPosts = async () => {
     await axios({
       method: 'GET',
@@ -21,12 +29,49 @@ export function PostProvider({ children }: { children: React.ReactNode }) {
     })
   }
 
+  // GET post
+  const [post, setPost] = useState({})
+  const getPost = async (id: any) => {
+    await axios({
+      method: 'GET',
+      withCredentials: true,
+      url: `http://localhost:4000/api/posts/${id}`,
+    }).then((res) => {
+      setPost(res.data.post)
+      // console.log(res.data.post)
+    })
+  }
+
+  // Create post
+  const [postTitle, setPostTitle] = useState('')
+  const [postContent, setPostContent] = useState('')
+  const createPost = async () => {
+    await axios({
+      method: 'POST',
+      withCredentials: true,
+      data: {
+        title: postTitle,
+        content: postContent,
+      },
+      url: 'http://localhost:4000/api/posts/create-post',
+    }).then((res) => {
+      console.log(res)
+    })
+  }
+
   // -------- RETURN --------
   return (
     <PostContext.Provider
       value={{
         posts,
         getPosts,
+        post,
+        getPost,
+        postTitle,
+        postContent,
+        setPostTitle,
+        setPostContent,
+        createPost,
       }}
     >
       {children}

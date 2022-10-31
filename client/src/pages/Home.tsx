@@ -1,16 +1,10 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import UserContext from '../context/UserContext'
-import PostContext from '../context/PostContext'
+import Posts from '../components/Posts'
 
 function Home() {
   const { user } = useContext(UserContext)
-  const { posts, getPosts } = useContext(PostContext)
-
-  useEffect(() => {
-    getPosts()
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   return (
     <>
@@ -18,18 +12,15 @@ function Home() {
         {user ? (
           <>
             <h1>Welcome back, {user.username}</h1>
+
+            {user.role === 'admin' && (
+              <Link to='/posts/create-post'>Create New Post</Link>
+            )}
           </>
         ) : null}
       </div>
 
-      <div>
-        {posts.map((post: any) => (
-          <div key={post._id}>
-            <h2>{post.title}</h2>
-            <p>{post.content}</p>
-          </div>
-        ))}
-      </div>
+      <Posts />
     </>
   )
 }
