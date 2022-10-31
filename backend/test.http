@@ -1,0 +1,50 @@
+### POST /api/register
+POST http://localhost:4000/api/register
+Content-Type: application/json
+
+{
+  "username": "jack",
+  "password": "1234"
+}
+
+### POST /api/login
+POST http://localhost:4000/api/login
+Content-Type: application/json
+
+{
+  "username": "jack",
+  "password": "1234"
+}
+
+### GET /api/logout
+GET http://localhost:4000/api/logout
+
+### GET /api/posts
+GET http://localhost:4000/api/posts
+
+### POST /api/posts
+POST http://localhost:4000/api/posts
+Content-Type: application/json
+
+{
+  "title": "My first post",
+  "content": "This is my first post"
+}
+
+### GET /api/posts/:id
+GET http://localhost:4000/api/posts/635f3843d519946cfdac705c
+
+### POST /api/posts/:id/comments
+POST http://localhost:4000/api/posts/635f3815d519946cfdac7054/comments
+Content-Type: application/json
+
+{
+  "content": "I really like this first post"
+}
+
+### 635f3815d519946cfdac7054
+### 635f3823d519946cfdac7057
+### 635f3843d519946cfdac705c
+
+### GET /api/posts/:id/comments
+GET http://localhost:4000/api/posts/635f3815d519946cfdac7054/comments
