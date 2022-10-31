@@ -11,7 +11,7 @@ interface UserInterface {
 
 // CONTEXT
 const UserContext = createContext({
-  user: {} as UserInterface | null, // TODO: add '| null'?
+  user: {} as UserInterface | null,
   registerUsername: '',
   setRegisterUsername: (username: string) => {},
   registerPassword: '',
@@ -39,45 +39,60 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
 
   const register = async () => {
     try {
-      const { data } = await axios.post('/api/register', {
-        username: registerUsername,
-        password: registerPassword,
+      axios({
+        method: 'POST',
+        data: {
+          username: registerUsername,
+          password: registerPassword,
+        },
+        withCredentials: true,
+        url: 'http://localhost:4000/api/register',
+      }).then((res) => {
+        console.log(res.data)
       })
-      setUser(data)
     } catch (error) {
       console.error(error)
     }
   }
 
   const login = async () => {
-    try {
-      const { data } = await axios.post('/api/login', {
+    await axios({
+      method: 'POST',
+      data: {
         username: loginUsername,
         password: loginPassword,
-      })
-      setUser(data)
-    } catch (error) {
-      console.error(error)
-    }
+      },
+      withCredentials: true,
+      url: 'http://localhost:4000/api/login',
+    }).then((res) => {
+      console.log(res.data)
+    })
   }
 
   const logout = async () => {
-    try {
-      await axios.get('/api/logout')
+    axios({
+      method: 'GET',
+      withCredentials: true,
+      url: 'http://localhost:4000/api/logout',
+    }).then((res) => {
       setUser(null)
-    } catch (error) {
-      console.error(error)
-    }
+      console.log(res.data)
+    })
   }
 
-  // GET user
+  // GET user from localStorage
   const getUser = async () => {
-    try {
-      const { data } = await axios.get('/api/user')
-      setUser(data)
-    } catch (error) {
-      console.error(error)
-    }
+    await axios({
+      method: 'GET',
+      withCredentials: true,
+      url: 'http://localhost:4000/api/user',
+    }).then((res) => {
+      if (res.data) {
+        setUser(res.data)
+      } else {
+        setUser(null)
+      }
+    })
   }
 
   return (

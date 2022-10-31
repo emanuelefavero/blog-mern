@@ -5,7 +5,7 @@ import './App.css'
 
 // Import Components
 import Header from './components/Header'
-// import ProtectedRoute from './components/ProtectedRoute'
+import ProtectedRoute from './components/ProtectedRoute'
 
 // Import Pages
 import Home from './pages/Home'
@@ -20,7 +20,6 @@ function App() {
 
   useEffect(() => {
     getUser()
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -30,7 +29,14 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route path='/' element={<Home />} />
+            <Route
+              path='/'
+              element={
+                <ProtectedRoute redirectPath='/login'>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
 

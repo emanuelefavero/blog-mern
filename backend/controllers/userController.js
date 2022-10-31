@@ -51,6 +51,8 @@ exports.register = [
                 return next(err)
               }
               // Registration successful.
+              // req.user = user
+
               res.status(200).json({ message: 'Registration successful!' })
             })
           })
@@ -105,6 +107,10 @@ exports.login = [
                   if (err) {
                     return next(err)
                   }
+
+                  // pass the user to the next middleware
+                  // req.user = foundUser
+
                   // Authentication successful.
                   res.status(200).json({ message: 'Login successful!' })
                 })
@@ -129,7 +135,12 @@ exports.logout = (req, res, next) => {
     if (err) {
       return next(err)
     }
-    // Logout successful.
+
     res.status(200).json({ message: 'Logout successful!' })
   })
+}
+
+// get user API
+exports.getUser = (req, res, next) => {
+  res.send(req.user)
 }

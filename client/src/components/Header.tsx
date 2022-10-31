@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import UserContext from '../context/UserContext'
 
 function Header() {
   const { user, logout } = useContext(UserContext)
+
+  useEffect(() => {
+    // getUser()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>
@@ -12,7 +17,13 @@ function Header() {
 
         {user?.username ? (
           <>
-            <button onClick={logout}>Logout</button>
+            <button
+              onClick={() => {
+                logout()
+              }}
+            >
+              Logout
+            </button>
           </>
         ) : (
           <>

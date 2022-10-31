@@ -10,6 +10,7 @@ const commentController = require('../controllers/commentController')
 router.post('/register', userController.register)
 router.post('/login', userController.login)
 router.get('/logout', userController.logout)
+router.get('/user', userController.getUser)
 
 router.get('/posts', postController.getPosts)
 router.post('/posts', postController.createPost)
