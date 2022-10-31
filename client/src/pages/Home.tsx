@@ -1,10 +1,16 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import UserContext from '../context/UserContext'
 import Posts from '../components/Posts'
 
 function Home() {
-  const { user } = useContext(UserContext)
+  const { user, getUser } = useContext(UserContext)
+
+  useEffect(() => {
+    getUser()
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>

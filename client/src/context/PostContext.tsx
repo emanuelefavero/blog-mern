@@ -8,8 +8,6 @@ const PostContext = createContext({
   post: {} as any,
   getPost: (id: string) => {},
   postTitle: '',
-  // TODO: check if this is the best way to do this
-  // or it needs to => '' and without parameters
   setPostTitle: (title: string) => {},
   postContent: '',
   setPostContent: (content: string) => {},

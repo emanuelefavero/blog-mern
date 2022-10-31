@@ -5,10 +5,7 @@ const Comment = require('../models/comment')
 // POST /posts/:id/comments API
 exports.createComment = [
   // Validate and sanitize fields.
-  body('content', 'Content must not be empty.')
-    .trim()
-    .isLength({ min: 1 })
-    .escape(),
+  body('content', 'Content must not be empty.').isLength({ min: 1 }),
 
   // Process request after validation and sanitization.
   (req, res, next) => {

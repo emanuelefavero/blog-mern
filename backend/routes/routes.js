@@ -11,6 +11,7 @@ router.post('/register', userController.register)
 router.post('/login', userController.login)
 router.get('/logout', userController.logout)
 router.get('/user', userController.getUser)
+router.get('/user/:id', userController.getUserById)
 
 router.get('/posts', postController.getPosts)
 router.post('/posts/create-post', postController.createPost)

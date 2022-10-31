@@ -4,6 +4,16 @@ import UserContext from '../context/UserContext'
 import PostContext from '../context/PostContext'
 import CommentContext from '../context/CommentContext'
 
+interface CommentInterface {
+  _id: string
+  content: string
+  createdAt: Date | string
+  userId: {
+    _id: string
+    username: string
+  }
+}
+
 function Home() {
   const { id }: any = useParams()
   const { user, getUser } = useContext(UserContext)
@@ -25,9 +35,6 @@ function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // TODO: POST /posts/:id/comments createComment
-  // TODO: GET /posts/:id/comments getComment
-
   return (
     <>
       <div>
@@ -40,7 +47,6 @@ function Home() {
             {/* CREATE COMMENT */}
             {user ? (
               <>
-                <h2>Create new comment</h2>
                 <input
                   type='text'
                   placeholder='Add a comment...'
@@ -48,7 +54,14 @@ function Home() {
                   onChange={(e) => setCommentContent(e.target.value)}
                   required
                 />
-                <button onClick={() => createComment(id)}>Comment</button>
+                <button
+                  onClick={() => {
+                    createComment(id)
+                    window.location.reload()
+                  }}
+                >
+                  Comment
+                </button>
               </>
             ) : comments.length > 0 ? (
               <Link to='/login'>Login to join the conversation</Link>
@@ -58,9 +71,12 @@ function Home() {
 
             {/* COMMENTS */}
             {comments.length > 0 && <h2>Comments</h2>}
-            {comments.map((comment: any) => (
+            {comments.map((comment: CommentInterface) => (
               <div key={comment._id}>
+                {/* escape single quotes from comment.content using regex */}
+                <h3>{comment.userId?.username && comment.userId.username}</h3>
                 <p>{comment.content}</p>
+                {/* <p>{comment.content}</p> */}
               </div>
             ))}
           </>

@@ -18,14 +18,8 @@ exports.getPosts = (req, res, next) => {
 // POST /posts API - createPost only if user has 'admin' role
 exports.createPost = [
   // Validate and sanitize fields.
-  body('title', 'Title must not be empty.')
-    .trim()
-    .isLength({ min: 1 })
-    .escape(),
-  body('content', 'Content must not be empty.')
-    .trim()
-    .isLength({ min: 1 })
-    .escape(),
+  body('title', 'Title must not be empty.').isLength({ min: 1 }),
+  body('content', 'Content must not be empty.').isLength({ min: 1 }),
 
   // Process request after validation and sanitization.
   (req, res, next) => {

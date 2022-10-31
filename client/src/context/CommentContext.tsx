@@ -20,7 +20,7 @@ export function CommentProvider({ children }: { children: React.ReactNode }) {
       url: `http://localhost:4000/api/posts/${id}/comments`,
     }).then((res) => {
       setComments(res.data.comments)
-      // console.log(res.data.comments)
+      // console.log(res.data)
     })
   }
 
@@ -33,7 +33,7 @@ export function CommentProvider({ children }: { children: React.ReactNode }) {
       data: {
         content: commentContent,
       },
-      url: `http://localhost:4000/api/posts/${id}/comments/create-comment`,
+      url: `http://localhost:4000/api/posts/${id}/comments/`,
     }).then((res) => {
       console.log(res)
     })

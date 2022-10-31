@@ -144,3 +144,18 @@ exports.logout = (req, res, next) => {
 exports.getUser = (req, res, next) => {
   res.send(req.user)
 }
+
+// get user by id
+exports.getUserById = (req, res, next) => {
+  User.findById(req.params.id).exec((err, user) => {
+    if (err) {
+      return next(err)
+    }
+    if (user === null) {
+      const err = new Error('User not found')
+      err.status = 404
+      return next(err)
+    }
+    res.send(user)
+  })
+}
