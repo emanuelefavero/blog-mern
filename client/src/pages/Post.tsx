@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import UserContext from '../context/UserContext'
 import PostContext from '../context/PostContext'
 import CommentContext from '../context/CommentContext'
@@ -15,15 +15,18 @@ interface CommentInterface {
 }
 
 function Home() {
+  const navigate = useNavigate()
+
   const { id }: any = useParams()
   const { user, getUser } = useContext(UserContext)
-  const { post, getPost } = useContext(PostContext)
+  const { post, getPost, deletePost } = useContext(PostContext)
   const {
     comments,
     getComments,
     commentContent,
     setCommentContent,
     createComment,
+    deleteComment,
   } = useContext(CommentContext)
 
   useEffect(() => {
@@ -43,6 +46,18 @@ function Home() {
           <>
             <h1>{post.title}</h1>
             <p>{post.content}</p>
+
+            {/* DELETE POST */}
+            {user && user.role === 'admin' && (
+              <button
+                onClick={() => {
+                  deletePost(post._id)
+                  navigate('/')
+                }}
+              >
+                Delete Post
+              </button>
+            )}
 
             {/* CREATE COMMENT */}
             {user ? (
@@ -77,6 +92,18 @@ function Home() {
                 <h3>{comment.userId?.username && comment.userId.username}</h3>
                 <p>{comment.content}</p>
                 {/* <p>{comment.content}</p> */}
+
+                {/* DELETE COMMENT */}
+                {user && user.role === 'admin' && (
+                  <button
+                    onClick={() => {
+                      deleteComment(id, comment._id)
+                      window.location.reload()
+                    }}
+                  >
+                    Delete Comment
+                  </button>
+                )}
               </div>
             ))}
           </>

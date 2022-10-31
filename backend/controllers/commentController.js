@@ -46,3 +46,13 @@ exports.getComments = (req, res, next) => {
       res.status(200).json({ comments })
     })
 }
+
+// DELETE /posts/:id/comments/:commentId API
+exports.deleteComment = (req, res, next) => {
+  Comment.findByIdAndRemove(req.params.commentId, (err) => {
+    if (err) {
+      return next(err)
+    }
+    res.status(200).json({ message: 'Comment deleted!' })
+  })
+}

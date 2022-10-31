@@ -60,3 +60,14 @@ exports.getPost = (req, res, next) => {
       res.status(200).json({ post })
     })
 }
+
+// DELETE /posts/:id API - deletePost only if user has 'admin' role
+exports.deletePost = (req, res, next) => {
+  Post.findByIdAndRemove(req.params.id, (err) => {
+    if (err) {
+      return next(err)
+    }
+
+    res.status(200).json({ message: 'Post deleted!' })
+  })
+}

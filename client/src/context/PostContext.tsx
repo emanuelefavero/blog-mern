@@ -12,6 +12,7 @@ const PostContext = createContext({
   postContent: '',
   setPostContent: (content: string) => {},
   createPost: () => {},
+  deletePost: (id: string) => {},
 })
 
 export function PostProvider({ children }: { children: React.ReactNode }) {
@@ -57,6 +58,17 @@ export function PostProvider({ children }: { children: React.ReactNode }) {
     })
   }
 
+  // Delete post
+  const deletePost = async (id: string) => {
+    await axios({
+      method: 'DELETE',
+      withCredentials: true,
+      url: `http://localhost:4000/api/posts/${id}`,
+    }).then((res) => {
+      console.log(res)
+    })
+  }
+
   // -------- RETURN --------
   return (
     <PostContext.Provider
@@ -70,6 +82,7 @@ export function PostProvider({ children }: { children: React.ReactNode }) {
         setPostTitle,
         setPostContent,
         createPost,
+        deletePost,
       }}
     >
       {children}

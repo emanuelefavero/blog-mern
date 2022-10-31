@@ -8,6 +8,7 @@ const CommentContext = createContext({
   commentContent: '',
   setCommentContent: (content: string) => {},
   createComment: (id: string) => {},
+  deleteComment: (id: string, commentId: string) => {},
 })
 
 export function CommentProvider({ children }: { children: React.ReactNode }) {
@@ -39,6 +40,17 @@ export function CommentProvider({ children }: { children: React.ReactNode }) {
     })
   }
 
+  // Delete comment
+  const deleteComment = async (id: string, commentId: string) => {
+    await axios({
+      method: 'DELETE',
+      withCredentials: true,
+      url: `http://localhost:4000/api/posts/${id}/comments/${commentId}`,
+    }).then((res) => {
+      console.log(res)
+    })
+  }
+
   return (
     <CommentContext.Provider
       value={{
@@ -47,6 +59,7 @@ export function CommentProvider({ children }: { children: React.ReactNode }) {
         commentContent,
         setCommentContent,
         createComment,
+        deleteComment,
       }}
     >
       {children}

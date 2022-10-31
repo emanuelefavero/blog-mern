@@ -17,9 +17,10 @@ router.get('/posts', postController.getPosts)
 router.post('/posts/create-post', postController.createPost)
 router.get('/posts/:id', postController.getPost)
 // router.put('/posts/:id', postController.updatePost)
-// router.delete('/posts/:id', postController.deletePost)
+router.delete('/posts/:id', postController.deletePost)
 
 router.post('/posts/:id/comments', commentController.createComment)
 router.get('/posts/:id/comments', commentController.getComments)
+router.delete('/posts/:id/comments/:commentId', commentController.deleteComment)
 
 module.exports = router
