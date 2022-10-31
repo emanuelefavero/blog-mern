@@ -7,6 +7,7 @@ import './App.css'
 
 // Import Components
 import Header from './components/Header'
+import Footer from './components/Footer'
 import ProtectedRoute from './components/ProtectedRoute'
 
 // Import Pages
@@ -54,6 +55,7 @@ function App() {
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
               </Routes>
+              <Footer />
             </Router>
           </CommentProvider>
         </PostProvider>
