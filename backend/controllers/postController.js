@@ -5,7 +5,6 @@ const Post = require('../models/post')
 // GET /posts API
 exports.getPosts = (req, res, next) => {
   Post.find()
-    .populate('userId')
     .populate('comments')
     .exec((err, posts) => {
       if (err) {

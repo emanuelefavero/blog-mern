@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react'
 import { UserProvider } from './context/UserContext'
+import { PostProvider } from './context/PostContext'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 
@@ -14,6 +15,7 @@ import Register from './pages/Register'
 
 // Import Context
 import UserContext from './context/UserContext'
+// import PostContext from './context/PostContext'
 
 function App() {
   const { getUser } = useContext(UserContext)
@@ -26,30 +28,23 @@ function App() {
   return (
     <div className='App'>
       <UserProvider>
-        <Router>
-          <Header />
-          <Routes>
-            <Route
-              path='/'
-              element={
-                <ProtectedRoute redirectPath='/login'>
-                  <Home />
-                </ProtectedRoute>
-              }
-            />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-
-            {/* <Route
-              path='/'
-              element={
-                <ProtectedRoute redirectPath='/login'>
-                  <NewComment />
-                </ProtectedRoute>
-              }
-            /> */}
-          </Routes>
-        </Router>
+        <PostProvider>
+          <Router>
+            <Header />
+            <Routes>
+              <Route
+                path='/'
+                element={
+                  <ProtectedRoute redirectPath='/login'>
+                    <Home />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
+            </Routes>
+          </Router>
+        </PostProvider>
       </UserProvider>
     </div>
   )
