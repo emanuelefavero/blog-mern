@@ -39,7 +39,9 @@ module.exports = function (passport) {
     User.findOne({ _id: id }, (err, user) => {
       // TIP: Here instead of passing the entire user, you can pass only the user.username so other data such as password is not exposed:
       const userInformation = {
+        _id: user._id,
         username: user.username,
+        password: user.password,
         role: user.role,
       }
       cb(err, userInformation)
