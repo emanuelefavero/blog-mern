@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react'
 import { UserProvider } from './context/UserContext'
 import { PostProvider } from './context/PostContext'
+import { CommentProvider } from './context/CommentContext'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 
@@ -31,28 +32,30 @@ function App() {
     <div className='App'>
       <UserProvider>
         <PostProvider>
-          <Router>
-            <Header />
-            <Routes>
-              {/* HOME */}
-              <Route path='/' element={<Home />} />
+          <CommentProvider>
+            <Router>
+              <Header />
+              <Routes>
+                {/* HOME */}
+                <Route path='/' element={<Home />} />
 
-              {/* POSTS */}
-              <Route path='/posts/:id' element={<Post />} />
-              <Route
-                path='/posts/create-post'
-                element={
-                  <ProtectedRoute redirectPath='/login'>
-                    <CreatePost />
-                  </ProtectedRoute>
-                }
-              />
+                {/* POSTS */}
+                <Route path='/posts/:id' element={<Post />} />
+                <Route
+                  path='/posts/create-post'
+                  element={
+                    <ProtectedRoute redirectPath='/login'>
+                      <CreatePost />
+                    </ProtectedRoute>
+                  }
+                />
 
-              {/* AUTH */}
-              <Route path='/login' element={<Login />} />
-              <Route path='/register' element={<Register />} />
-            </Routes>
-          </Router>
+                {/* AUTH */}
+                <Route path='/login' element={<Login />} />
+                <Route path='/register' element={<Register />} />
+              </Routes>
+            </Router>
+          </CommentProvider>
         </PostProvider>
       </UserProvider>
     </div>
