@@ -13,6 +13,9 @@ const PostContext = createContext({
   setPostContent: (content: string) => {},
   createPost: () => {},
   deletePost: (id: string) => {},
+  updatePost: (id: string) => {},
+  showUpdateForm: false,
+  setShowUpdateForm: (show: boolean) => {},
 })
 
 export function PostProvider({ children }: { children: React.ReactNode }) {
@@ -69,6 +72,22 @@ export function PostProvider({ children }: { children: React.ReactNode }) {
     })
   }
 
+  // Update post
+  const [showUpdateForm, setShowUpdateForm] = useState(false)
+  const updatePost = async (id: string) => {
+    await axios({
+      method: 'PUT',
+      withCredentials: true,
+      data: {
+        title: postTitle,
+        content: postContent,
+      },
+      url: `http://localhost:4000/api/posts/${id}`,
+    }).then((res) => {
+      console.log(res)
+    })
+  }
+
   // -------- RETURN --------
   return (
     <PostContext.Provider
@@ -83,6 +102,9 @@ export function PostProvider({ children }: { children: React.ReactNode }) {
         setPostContent,
         createPost,
         deletePost,
+        updatePost,
+        showUpdateForm,
+        setShowUpdateForm,
       }}
     >
       {children}

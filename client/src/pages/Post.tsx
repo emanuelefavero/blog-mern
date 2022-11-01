@@ -19,7 +19,18 @@ function Home() {
 
   const { id }: any = useParams()
   const { user, getUser } = useContext(UserContext)
-  const { post, getPost, deletePost } = useContext(PostContext)
+  const {
+    post,
+    getPost,
+    deletePost,
+    updatePost,
+    showUpdateForm,
+    setShowUpdateForm,
+    postTitle,
+    setPostTitle,
+    postContent,
+    setPostContent,
+  } = useContext(PostContext)
   const {
     comments,
     getComments,
@@ -33,10 +44,24 @@ function Home() {
     getUser()
     getPost(id)
 
+    setShowUpdateForm(false)
+
     getComments(id)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    if (post.title) {
+      setPostTitle(post.title)
+    }
+
+    if (post.content) {
+      setPostContent(post.content)
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showUpdateForm])
 
   return (
     <>
@@ -57,6 +82,54 @@ function Home() {
               >
                 Delete Post
               </button>
+            )}
+
+            {/* UPDATE POST */}
+            {user && user.role === 'admin' && (
+              <>
+                <button
+                  onClick={() => {
+                    setShowUpdateForm(!showUpdateForm)
+                  }}
+                >
+                  {showUpdateForm ? 'Cancel' : 'Edit Post'}
+                </button>
+
+                {/* Update Form */}
+                {showUpdateForm && (
+                  <>
+                    <input
+                      type='text'
+                      placeholder='Title'
+                      value={postTitle}
+                      onChange={(e) => {
+                        setPostTitle(e.target.value)
+                        // checkPostTitle(e)
+                      }}
+                      required
+                    />
+                    <input
+                      type='text'
+                      placeholder='Content'
+                      value={postContent}
+                      onChange={(e) => {
+                        setPostContent(e.target.value)
+                        // checkPostContent(e)
+                      }}
+                      required
+                    />
+                    <button
+                      onClick={() => {
+                        updatePost(post._id)
+                        setShowUpdateForm(false)
+                        window.location.reload()
+                      }}
+                    >
+                      Update Post
+                    </button>
+                  </>
+                )}
+              </>
             )}
 
             {/* CREATE COMMENT */}

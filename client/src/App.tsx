@@ -19,7 +19,10 @@ import CreatePost from './pages/CreatePost'
 
 // Import Context
 import UserContext from './context/UserContext'
-// import PostContext from './context/PostContext'
+
+// TODO: Style the app
+// TODO: Add a loading spinner
+// TODO: Add 'createdAt' to posts and comments
 
 function App() {
   const { getUser } = useContext(UserContext)

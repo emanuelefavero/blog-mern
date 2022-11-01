@@ -71,3 +71,16 @@ exports.deletePost = (req, res, next) => {
     res.status(200).json({ message: 'Post deleted!' })
   })
 }
+
+
+
+// Find one and update post
+exports.updatePost = (req, res, next) => {
+  Post.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
+    if (err) {
+      return next(err)
+    }
+
+    res.status(200).json({ message: 'Post updated!' })
+  })
+}

@@ -48,7 +48,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         withCredentials: true,
         url: 'http://localhost:4000/api/register',
       }).then((res) => {
-        console.log(res.data)
+        console.log(res.data.message)
       })
     } catch (error) {
       console.error(error)
@@ -65,7 +65,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
       withCredentials: true,
       url: 'http://localhost:4000/api/login',
     }).then((res) => {
-      console.log(res.data)
+      console.log(res.data.message)
     })
   }
 
@@ -76,7 +76,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
       url: 'http://localhost:4000/api/logout',
     }).then((res) => {
       setUser(null)
-      console.log(res.data)
+      console.log(res.data.message)
     })
   }
 
