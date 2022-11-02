@@ -26,8 +26,9 @@ export function PostProvider({ children }: { children: React.ReactNode }) {
       withCredentials: true,
       url: 'http://localhost:4000/api/posts',
     }).then((res) => {
-      setPosts(res.data.posts)
-      // console.log(res.data.posts)
+      // NOTE: REVERSE posts ARRAY ORDER
+      // TIP: For production: it could be better to sort the posts in the backend (mongoose) using the createdAt field (date)
+      setPosts(res.data.posts.reverse())
     })
   }
 
