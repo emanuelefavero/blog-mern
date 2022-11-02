@@ -1,0 +1,63 @@
+.Header {
+  width: 100%;
+  background-color: var(--color-almost-white);
+  padding: 0.8rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(64, 99, 125, 0.105);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  margin-bottom: 6rem;
+}
+
+.Header .headerMaxWidthContainer {
+  /* MAX WIDTH */
+  max-width: var(--max-width);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Header .logo a {
+  font-weight: bold;
+}
+
+.Header .logo a:hover {
+  text-decoration: none;
+}
+
+.Header .logo .adminBadge {
+  font-size: 1rem;
+  margin-left: 0.25rem;
+  font-weight: 500;
+  position: relative;
+  top: -0.4rem;
+}
+
+.Header .logo .userBadge {
+  font-size: 1rem;
+  margin-left: 0.25rem;
+  font-weight: 500;
+  position: relative;
+  top: -0.4rem;
+}
+
+.Header button {
+  background: none;
+  padding: 0;
+  font-size: 1.2rem;
+
+  color: var(--color-primary);
+}
+
+.Header button:hover {
+  color: var(--color-primary-HOVER-darker);
+  text-decoration: underline;
+}
+
+.Header nav a {
+  margin-left: 1rem;
+}

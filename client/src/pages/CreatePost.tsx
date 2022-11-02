@@ -1,3 +1,4 @@
+import styles from './CreatePost.module.css'
 import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import UserContext from '../context/UserContext'
@@ -42,7 +43,7 @@ function CreatePost() {
   // RETURN
   return (
     <>
-      <div>
+      <div className={styles.CreatePost}>
         {user ? (
           <>
             {user.role === 'admin' ? (
@@ -58,8 +59,7 @@ function CreatePost() {
                   }}
                   required
                 />
-                <input
-                  type='text'
+                <textarea
                   placeholder='Content'
                   value={postContent}
                   onChange={(e) => {

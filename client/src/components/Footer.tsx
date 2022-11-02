@@ -1,3 +1,4 @@
+import styles from './Footer.module.css'
 import { useState, useEffect } from 'react'
 
 function Footer() {
@@ -7,7 +8,11 @@ function Footer() {
     setDate(new Date())
   }, [])
 
-  return <footer>Blog &#174; {date.getFullYear()}</footer>
+  return (
+    <footer className={styles.Footer}>
+      <span className={styles.date}>Blog &#174; {date.getFullYear()}</span>
+    </footer>
+  )
 }
 
 export default Footer

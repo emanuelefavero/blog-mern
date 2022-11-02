@@ -1,3 +1,6 @@
+import styles from './Post.module.css'
+import classnames from 'classnames'
+import randomColor from 'randomcolor'
 import { useContext, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import UserContext from '../context/UserContext'
@@ -64,79 +67,83 @@ function Home() {
   }, [showUpdateForm])
 
   return (
-    <>
-      <div>
-        {/* POST */}
-        {post ? (
-          <>
-            <h1>{post.title}</h1>
-            <p>{post.content}</p>
+    <div className={styles.Post}>
+      {/* POST */}
+      {post ? (
+        <>
+          <h1>{post.title}</h1>
+          <p>{post.content}</p>
 
-            {/* DELETE POST */}
-            {user && user.role === 'admin' && (
+          {/* DELETE POST */}
+          {user && user.role === 'admin' && (
+            <button
+              className={classnames(styles.deleteButton, styles.adminFeature)}
+              onClick={() => {
+                deletePost(post._id)
+                navigate('/')
+              }}
+            >
+              Delete Post
+            </button>
+          )}
+
+          {/* UPDATE POST */}
+          {user && user.role === 'admin' && (
+            <>
               <button
+                className={classnames(styles.editButton, styles.adminFeature)}
                 onClick={() => {
-                  deletePost(post._id)
-                  navigate('/')
+                  setShowUpdateForm(!showUpdateForm)
                 }}
               >
-                Delete Post
+                {showUpdateForm ? 'Cancel' : 'Edit Post'}
               </button>
-            )}
 
-            {/* UPDATE POST */}
-            {user && user.role === 'admin' && (
-              <>
-                <button
-                  onClick={() => {
-                    setShowUpdateForm(!showUpdateForm)
-                  }}
-                >
-                  {showUpdateForm ? 'Cancel' : 'Edit Post'}
-                </button>
+              {/* Update Form */}
+              {showUpdateForm && (
+                <>
+                  <input
+                    type='text'
+                    placeholder='Title'
+                    value={postTitle}
+                    onChange={(e) => {
+                      setPostTitle(e.target.value)
+                      // checkPostTitle(e)
+                    }}
+                    required
+                  />
+                  <textarea
+                    placeholder='Content'
+                    value={postContent}
+                    onChange={(e) => {
+                      setPostContent(e.target.value)
+                      // checkPostContent(e)
+                    }}
+                    required
+                  />
+                  <button
+                    className={classnames(
+                      styles.updateButton,
+                      styles.adminFeature
+                    )}
+                    onClick={() => {
+                      updatePost(post._id)
+                      setShowUpdateForm(false)
+                      window.location.reload()
+                    }}
+                  >
+                    Update Post
+                  </button>
+                </>
+              )}
+            </>
+          )}
 
-                {/* Update Form */}
-                {showUpdateForm && (
-                  <>
-                    <input
-                      type='text'
-                      placeholder='Title'
-                      value={postTitle}
-                      onChange={(e) => {
-                        setPostTitle(e.target.value)
-                        // checkPostTitle(e)
-                      }}
-                      required
-                    />
-                    <input
-                      type='text'
-                      placeholder='Content'
-                      value={postContent}
-                      onChange={(e) => {
-                        setPostContent(e.target.value)
-                        // checkPostContent(e)
-                      }}
-                      required
-                    />
-                    <button
-                      onClick={() => {
-                        updatePost(post._id)
-                        setShowUpdateForm(false)
-                        window.location.reload()
-                      }}
-                    >
-                      Update Post
-                    </button>
-                  </>
-                )}
-              </>
-            )}
-
+          <section className={styles.comments}>
             {/* CREATE COMMENT */}
             {user ? (
               <>
-                <input
-                  type='text'
+                <textarea
                   placeholder='Add a comment...'
                   value={commentContent}
                   onChange={(e) => setCommentContent(e.target.value)}
@@ -157,32 +164,46 @@ function Home() {
               <Link to='/login'>Login and be the first to comment</Link>
             )}
 
+            <hr />
+
             {/* COMMENTS */}
             {comments.length > 0 && <h2>Comments</h2>}
             {comments.map((comment: CommentInterface) => (
               <div key={comment._id}>
                 {/* escape single quotes from comment.content using regex */}
-                <h3>{comment.userId?.username && comment.userId.username}</h3>
+                <h3
+                  style={{
+                    color: randomColor({
+                      luminosity: 'light',
+                      hue: 'purple',
+                    }),
+                  }}
+                >
+                  {comment.userId?.username && comment.userId.username}
+                  {/* DELETE COMMENT */}
+                  {user && user.role === 'admin' && (
+                    <button
+                      className={classnames(
+                        styles.deleteButton,
+                        styles.adminFeature
+                      )}
+                      onClick={() => {
+                        deleteComment(id, comment._id)
+                        window.location.reload()
+                      }}
+                    >
+                      Delete Comment
+                    </button>
+                  )}
+                </h3>
                 <p>{comment.content}</p>
                 {/* <p>{comment.content}</p> */}
-
-                {/* DELETE COMMENT */}
-                {user && user.role === 'admin' && (
-                  <button
-                    onClick={() => {
-                      deleteComment(id, comment._id)
-                      window.location.reload()
-                    }}
-                  >
-                    Delete Comment
-                  </button>
-                )}
               </div>
             ))}
-          </>
-        ) : null}
-      </div>
-    </>
+          </section>
+        </>
+      ) : null}
+    </div>
   )
 }
 

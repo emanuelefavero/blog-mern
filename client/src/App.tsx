@@ -1,9 +1,9 @@
+import styles from './App.module.css'
 import { useContext, useEffect } from 'react'
 import { UserProvider } from './context/UserContext'
 import { PostProvider } from './context/PostContext'
 import { CommentProvider } from './context/CommentContext'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import './App.css'
 
 // Import Components
 import Header from './components/Header'
@@ -33,31 +33,33 @@ function App() {
   }, [])
 
   return (
-    <div className='App'>
+    <div className={styles.App}>
       <UserProvider>
         <PostProvider>
           <CommentProvider>
             <Router>
               <Header />
-              <Routes>
-                {/* HOME */}
-                <Route path='/' element={<Home />} />
+              <main>
+                <Routes>
+                  {/* HOME */}
+                  <Route path='/' element={<Home />} />
 
-                {/* POSTS */}
-                <Route path='/posts/:id' element={<Post />} />
-                <Route
-                  path='/posts/create-post'
-                  element={
-                    <ProtectedRoute redirectPath='/login'>
-                      <CreatePost />
-                    </ProtectedRoute>
-                  }
-                />
+                  {/* POSTS */}
+                  <Route path='/posts/:id' element={<Post />} />
+                  <Route
+                    path='/posts/create-post'
+                    element={
+                      <ProtectedRoute redirectPath='/login'>
+                        <CreatePost />
+                      </ProtectedRoute>
+                    }
+                  />
 
-                {/* AUTH */}
-                <Route path='/login' element={<Login />} />
-                <Route path='/register' element={<Register />} />
-              </Routes>
+                  {/* AUTH */}
+                  <Route path='/login' element={<Login />} />
+                  <Route path='/register' element={<Register />} />
+                </Routes>
+              </main>
               <Footer />
             </Router>
           </CommentProvider>

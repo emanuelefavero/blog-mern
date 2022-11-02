@@ -1,3 +1,4 @@
+import styles from './Home.module.css'
 import { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import UserContext from '../context/UserContext'
@@ -13,21 +14,25 @@ function Home() {
   }, [])
 
   return (
-    <>
-      <div>
+    <div className={styles.Home}>
+      <section
+        className={
+          user?.role === 'admin' ? styles.welcomeAreaADMIN : styles.welcomeArea
+        }
+      >
         {user ? (
-          <>
-            <h1>Welcome back, {user.username}</h1>
+          <div className={styles.welcomeTitle}>
+            <h1>Welcome back, {user.username} </h1>
 
             {user.role === 'admin' && (
               <Link to='/posts/create-post'>Create New Post</Link>
             )}
-          </>
+          </div>
         ) : null}
-      </div>
+      </section>
 
       <Posts />
-    </>
+    </div>
   )
 }
 

@@ -1,0 +1,94 @@
+.Post button {
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+.Post button.adminFeature {
+  font-size: 0.875rem;
+  font-weight: bold;
+  padding: 0.4rem 0.7rem;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.Post button.deleteButton {
+  background-color: var(--color-danger);
+}
+
+.Post button.deleteButton:hover {
+  background-color: var(--color-danger-HOVER);
+}
+
+.Post button.editButton {
+  background-color: var(--color-warning);
+}
+
+.Post button.editButton:hover {
+  background-color: var(--color-warning-HOVER);
+}
+
+.Post button.updateButton {
+  background-color: var(--color-success);
+}
+
+.Post button.updateButton:hover {
+  background-color: var(--color-success-HOVER);
+}
+
+.Post section.comments {
+  margin-top: 6rem;
+  background-color: var(--color-almost-black);
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.Post section.comments textarea {
+  width: 100%;
+  height: 100px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  background-color: var(--color-input-background);
+  color: white;
+}
+
+.Post section.comments textarea:focus {
+  background-color: var(--color-input-background-FOCUS);
+}
+
+.Post section.comments textarea::placeholder {
+  color: var(--color-placeholder-on-dark);
+}
+
+.Post section.comments button.createCommentButton {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.Post section.comments hr {
+  margin-top: 1.2rem;
+  height: 2px;
+  background-color: rgba(197, 200, 216, 0.093);
+  border: none;
+  border-radius: 3px;
+}
+
+.Post section.comments h2 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.Post section.comments h3 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  color: rgba(99, 102, 117, 1);
+}
+
+.Post section.comments p {
+  margin-bottom: 3rem;
+  color: rgba(225, 226, 232, 1);
+}

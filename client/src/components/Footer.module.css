@@ -1,0 +1,17 @@
+.Footer {
+  width: 100%;
+  background-color: var(--color-almost-white);
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid rgba(64, 99, 125, 0.105);
+  color: var(--color-text);
+  position: fixed;
+  bottom: 0;
+
+  backdrop-filter: blur(10px);
+}
+
+.Footer .date {
+  user-select: none;
+}

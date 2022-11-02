@@ -1,0 +1,33 @@
+.Home .welcomeAreaADMIN {
+  background: rgba(255, 255, 255, 0.131);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
+  margin-bottom: 2.5rem;
+}
+
+.Home .welcomeArea {
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.Home .welcomeAreaADMIN h1 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.Home .welcomeAreaADMIN a {
+  color: var(--color-success);
+}
+
+.Home .welcomeArea h1 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.Home .welcomeArea a {
+  font-weight: 600;
+  color: var(--color-primary);
+}

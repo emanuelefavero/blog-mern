@@ -1,0 +1,17 @@
+.Posts h2 {
+  /* font-size: 1rem;
+  text-transform: uppercase; */
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.Posts p {
+  margin-bottom: 2rem;
+}
+
+.Posts hr {
+  height: 2px;
+  background-color: rgba(105, 110, 138, 0.074);
+  border: none;
+  border-radius: 3px;
+}

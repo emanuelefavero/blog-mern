@@ -1,3 +1,4 @@
+import styles from './Posts.module.css'
 import { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import PostContext from '../context/PostContext'
@@ -13,13 +14,18 @@ function Home() {
 
   return (
     <>
-      <div>
+      <div className={styles.Posts}>
         {posts.map((post: any) => (
           <div key={post._id}>
-            <Link to={`/posts/${post._id}`}>
+            <Link
+              onClick={() => window.scrollTo(0, 0)}
+              to={`/posts/${post._id}`}
+            >
               <h2>{post.title}</h2>
             </Link>
             <p>{post.content}</p>
+
+            <hr />
           </div>
         ))}
       </div>
