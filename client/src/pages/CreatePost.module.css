@@ -2,3 +2,51 @@
   font-size: 1rem;
   text-transform: uppercase;
 }
+
+.CreatePost .markdownPreviewText {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  color: var(--color-success);
+  animation: fadeIn 2s ease-in-out infinite alternate;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* MARKDOWN STYLING */
+/* NOTE: Found on these components: Post, Posts, CreatePost */
+.CreatePost .markdownContainer {
+  margin-bottom: 2rem;
+  line-height: 1.3;
+  padding: 1rem 0rem;
+}
+
+.CreatePost .markdownContainer img {
+  width: 100%;
+  height: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
+}
+
+.CreatePost .markdownContainer ul,
+.CreatePost .markdownContainer ol {
+  padding: 0rem 2rem;
+}
+
+.CreatePost .markdownContainer h1,
+.CreatePost .markdownContainer h2,
+.CreatePost .markdownContainer h3,
+.CreatePost .markdownContainer h4,
+.CreatePost .markdownContainer h5,
+.CreatePost .markdownContainer h6 {
+  margin-bottom: 1.5rem;
+}
+/* ------ */

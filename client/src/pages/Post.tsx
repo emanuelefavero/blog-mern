@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import randomColor from 'randomcolor'
 import { useContext, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
+import ReactMarkdown from 'react-markdown'
 import UserContext from '../context/UserContext'
 import PostContext from '../context/PostContext'
 import CommentContext from '../context/CommentContext'
@@ -71,8 +72,16 @@ function Home() {
       {/* POST */}
       {post ? (
         <>
-          <h1>{post.title}</h1>
-          <p>{post.content}</p>
+          {/* <h1>{post.title}</h1> */}
+          <h1>{showUpdateForm ? postTitle : post.title}</h1>
+
+          {/* NOTE: MARKDOWN RENDER */}
+          {/* <p>{post.content}</p> */}
+          <ReactMarkdown
+            className={styles.markdownContainer}
+            // children={post.content}
+            children={showUpdateForm ? postContent : post.content}
+          />
 
           {/* DELETE POST */}
           {user && user.role === 'admin' && (
@@ -113,7 +122,7 @@ function Home() {
                     required
                   />
                   <textarea
-                    placeholder='Content'
+                    placeholder='Post Content (Markdown)'
                     value={postContent}
                     onChange={(e) => {
                       setPostContent(e.target.value)

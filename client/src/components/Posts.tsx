@@ -1,6 +1,7 @@
 import styles from './Posts.module.css'
 import { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import ReactMarkdown from 'react-markdown'
 import PostContext from '../context/PostContext'
 
 function Home() {
@@ -23,7 +24,14 @@ function Home() {
             >
               <h2>{post.title}</h2>
             </Link>
-            <p>{post.content}</p>
+            {/* <p>{post.content}</p> */}
+
+            {/* NOTE: MARKDOWN RENDER */}
+            {/* <p>{post.content}</p> */}
+            <ReactMarkdown
+              className={styles.markdownContainer}
+              children={post.content}
+            />
 
             <hr />
           </div>

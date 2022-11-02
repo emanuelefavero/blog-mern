@@ -1,6 +1,7 @@
 import styles from './CreatePost.module.css'
 import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import ReactMarkdown from 'react-markdown'
 import UserContext from '../context/UserContext'
 import PostContext from '../context/PostContext'
 
@@ -60,7 +61,7 @@ function CreatePost() {
                   required
                 />
                 <textarea
-                  placeholder='Content'
+                  placeholder='Post Content (Markdown)'
                   value={postContent}
                   onChange={(e) => {
                     setPostContent(e.target.value)
@@ -79,6 +80,15 @@ function CreatePost() {
             ) : null}
           </>
         ) : null}
+        {postContent && (
+          <h3 className={styles.markdownPreviewText}>Live Markdown Preview:</h3>
+        )}
+        {/* NOTE: MARKDOWN RENDER */}
+        {/* <p>{post.content}</p> */}
+        <ReactMarkdown
+          className={styles.markdownContainer}
+          children={postContent}
+        />
       </div>
     </>
   )

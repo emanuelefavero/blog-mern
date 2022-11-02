@@ -1,3 +1,35 @@
+/* MARKDOWN STYLING */
+/* NOTE: Found on these components: Post, Posts, CreatePost */
+.Post .markdownContainer {
+  margin-bottom: 2rem;
+  line-height: 1.3;
+  padding: 1rem 0rem;
+}
+
+.Post .markdownContainer img {
+  width: 100%;
+  height: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
+}
+
+.Post .markdownContainer ul,
+.Post .markdownContainer ol {
+  padding: 0.5rem 2rem;
+}
+
+.Post .markdownContainer h1,
+.Post .markdownContainer h2,
+.Post .markdownContainer h3,
+.Post .markdownContainer h4,
+.Post .markdownContainer h5,
+.Post .markdownContainer h6 {
+  margin-bottom: 1.5rem;
+}
+/* ------ */
+
 .Post button {
   margin-left: 1rem;
   margin-bottom: 1rem;
