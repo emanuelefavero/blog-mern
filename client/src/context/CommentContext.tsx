@@ -1,5 +1,6 @@
 import { useState, createContext } from 'react'
 import axios from 'axios'
+axios.defaults.baseURL = 'http://localhost:4000'
 
 // Create react context for comments of each post
 const CommentContext = createContext({
@@ -18,7 +19,7 @@ export function CommentProvider({ children }: { children: React.ReactNode }) {
     await axios({
       method: 'GET',
       withCredentials: true,
-      url: `http://localhost:4000/api/posts/${id}/comments`,
+      url: `/api/posts/${id}/comments`,
     }).then((res) => {
       setComments(res.data.comments)
       // console.log(res.data)
@@ -34,7 +35,7 @@ export function CommentProvider({ children }: { children: React.ReactNode }) {
       data: {
         content: commentContent,
       },
-      url: `http://localhost:4000/api/posts/${id}/comments/`,
+      url: `/api/posts/${id}/comments/`,
     }).then((res) => {
       console.log(res)
     })
@@ -45,7 +46,7 @@ export function CommentProvider({ children }: { children: React.ReactNode }) {
     await axios({
       method: 'DELETE',
       withCredentials: true,
-      url: `http://localhost:4000/api/posts/${id}/comments/${commentId}`,
+      url: `/api/posts/${id}/comments/${commentId}`,
     }).then((res) => {
       console.log(res)
     })

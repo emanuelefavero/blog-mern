@@ -1,5 +1,6 @@
 import { useState, createContext } from 'react'
 import axios from 'axios'
+axios.defaults.baseURL = 'http://localhost:4000'
 
 // ---------- CONTEXT ----------
 const PostContext = createContext({
@@ -24,7 +25,7 @@ export function PostProvider({ children }: { children: React.ReactNode }) {
     await axios({
       method: 'GET',
       withCredentials: true,
-      url: 'http://localhost:4000/api/posts',
+      url: '/api/posts',
     }).then((res) => {
       // NOTE: REVERSE posts ARRAY ORDER
       // TIP: For production: it could be better to sort the posts in the backend (mongoose) using the createdAt field (date)
@@ -38,7 +39,7 @@ export function PostProvider({ children }: { children: React.ReactNode }) {
     await axios({
       method: 'GET',
       withCredentials: true,
-      url: `http://localhost:4000/api/posts/${id}`,
+      url: `/api/posts/${id}`,
     }).then((res) => {
       setPost(res.data.post)
       // console.log(res.data.post)
@@ -56,7 +57,7 @@ export function PostProvider({ children }: { children: React.ReactNode }) {
         title: postTitle,
         content: postContent,
       },
-      url: 'http://localhost:4000/api/posts/create-post',
+      url: '/api/posts/create-post',
     }).then((res) => {
       console.log(res)
     })
@@ -67,7 +68,7 @@ export function PostProvider({ children }: { children: React.ReactNode }) {
     await axios({
       method: 'DELETE',
       withCredentials: true,
-      url: `http://localhost:4000/api/posts/${id}`,
+      url: `/api/posts/${id}`,
     }).then((res) => {
       console.log(res)
     })
@@ -83,7 +84,7 @@ export function PostProvider({ children }: { children: React.ReactNode }) {
         title: postTitle,
         content: postContent,
       },
-      url: `http://localhost:4000/api/posts/${id}`,
+      url: `/api/posts/${id}`,
     }).then((res) => {
       console.log(res)
     })

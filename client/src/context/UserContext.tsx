@@ -1,5 +1,6 @@
 import React, { useState, createContext } from 'react'
 import axios from 'axios'
+axios.defaults.baseURL = 'http://localhost:4000'
 
 // INTERFACES
 interface UserInterface {
@@ -46,7 +47,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
           password: registerPassword,
         },
         withCredentials: true,
-        url: 'http://localhost:4000/api/register',
+        url: '/api/register',
       }).then((res) => {
         console.log(res.data.message)
       })
@@ -63,7 +64,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         password: loginPassword,
       },
       withCredentials: true,
-      url: 'http://localhost:4000/api/login',
+      url: '/api/login',
     }).then((res) => {
       console.log(res.data.message)
     })
@@ -73,7 +74,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     axios({
       method: 'GET',
       withCredentials: true,
-      url: 'http://localhost:4000/api/logout',
+      url: '/api/logout',
     }).then((res) => {
       setUser(null)
       console.log(res.data.message)
@@ -85,7 +86,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     await axios({
       method: 'GET',
       withCredentials: true,
-      url: 'http://localhost:4000/api/user',
+      url: '/api/user',
     }).then((res) => {
       if (res.data) {
         setUser(res.data)
