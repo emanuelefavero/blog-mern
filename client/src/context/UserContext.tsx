@@ -76,12 +76,12 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
       url: '/api/login',
     })
       .then((res) => {
-        console.log(res.data.message)
+        // console.log(res.data.message)
+
         getUser()
       })
       .catch((err) => {
-        console.log(err.response?.status) // the HTTP status code
-        console.log(err.response?.data) // the actual body of the response
+        console.log(err.response?.data.message)
       })
   }
 
@@ -93,11 +93,10 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     })
       .then((res) => {
         setUser(null)
-        console.log(res.data.message)
+        // console.log(res.data.message)
       })
       .catch((err) => {
-        console.log(err.response?.status) // the HTTP status code
-        console.log(err.response?.data) // the actual body of the response
+        console.log(err.response?.data.message)
       })
   }
 
@@ -109,15 +108,14 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
       url: '/api/user',
     })
       .then((res) => {
-        if (res.data) {
-          setUser(res.data)
+        if (res.data.user) {
+          setUser(res.data.user)
         } else {
           setUser(null)
         }
       })
       .catch((err) => {
-        console.log(err.response?.status) // the HTTP status code
-        console.log(err.response?.data) // the actual body of the response
+        console.log(err.response?.data.message)
       })
   }
 

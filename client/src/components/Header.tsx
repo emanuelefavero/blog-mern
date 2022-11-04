@@ -8,7 +8,7 @@ function Header() {
 
   useEffect(() => {
     getUser()
-    console.log(user)
+    // console.log(user)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
