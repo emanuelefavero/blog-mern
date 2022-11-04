@@ -55,7 +55,8 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         withCredentials: true,
         url: '/api/register',
       }).then((res) => {
-        console.log(res.data.message)
+        console.log(res)
+        // getUser()
       })
     } catch (error) {
       const err = error as AxiosError
@@ -76,6 +77,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     })
       .then((res) => {
         console.log(res.data.message)
+        getUser()
       })
       .catch((err) => {
         console.log(err.response?.status) // the HTTP status code

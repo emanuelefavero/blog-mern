@@ -50,10 +50,9 @@ exports.register = [
               if (err) {
                 return next(err)
               }
-              // Registration successful.
-              // req.user = user
 
-              res.status(200).json({ message: 'Registration successful!' })
+              // Successful - redirect to new user record.
+              res.status(200).json({ message: 'User created successfully!' })
             })
           })
         }
@@ -142,7 +141,7 @@ exports.logout = (req, res, next) => {
 
 // get user API
 exports.getUser = (req, res, next) => {
-  res.send(req.user)
+  res.status(200).json(req.user)
 }
 
 // get user by id
