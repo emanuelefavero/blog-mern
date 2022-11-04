@@ -56,7 +56,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         url: '/api/register',
       }).then((res) => {
         console.log(res)
-        // getUser()
+        getUser()
       })
     } catch (error) {
       const err = error as AxiosError
