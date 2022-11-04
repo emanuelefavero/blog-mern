@@ -1,5 +1,6 @@
 import React, { useState, createContext } from 'react'
 import axios from 'axios'
+import type { AxiosError } from 'axios'
 
 // NOTE: PRODUCTION
 axios.defaults.baseURL = 'https://blog-mern-backend.onrender.com'
@@ -57,7 +58,9 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         console.log(res.data.message)
       })
     } catch (error) {
-      console.error(error)
+      const err = error as AxiosError
+      console.log(err.response?.status) // the HTTP status code
+      console.log(err.response?.data) // the actual body of the response
     }
   }
 
@@ -70,9 +73,14 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
       },
       withCredentials: true,
       url: '/api/login',
-    }).then((res) => {
-      console.log(res.data.message)
     })
+      .then((res) => {
+        console.log(res.data.message)
+      })
+      .catch((err) => {
+        console.log(err.response?.status) // the HTTP status code
+        console.log(err.response?.data) // the actual body of the response
+      })
   }
 
   const logout = async () => {
@@ -80,10 +88,15 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
       method: 'GET',
       withCredentials: true,
       url: '/api/logout',
-    }).then((res) => {
-      setUser(null)
-      console.log(res.data.message)
     })
+      .then((res) => {
+        setUser(null)
+        console.log(res.data.message)
+      })
+      .catch((err) => {
+        console.log(err.response?.status) // the HTTP status code
+        console.log(err.response?.data) // the actual body of the response
+      })
   }
 
   // GET user from localStorage
@@ -92,13 +105,18 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
       method: 'GET',
       withCredentials: true,
       url: '/api/user',
-    }).then((res) => {
-      if (res.data) {
-        setUser(res.data)
-      } else {
-        setUser(null)
-      }
     })
+      .then((res) => {
+        if (res.data) {
+          setUser(res.data)
+        } else {
+          setUser(null)
+        }
+      })
+      .catch((err) => {
+        console.log(err.response?.status) // the HTTP status code
+        console.log(err.response?.data) // the actual body of the response
+      })
   }
 
   return (
