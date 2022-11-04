@@ -1,6 +1,11 @@
 import { useState, createContext } from 'react'
 import axios from 'axios'
+
+// NOTE: PRODUCTION
 axios.defaults.baseURL = 'https://blog-mern-backend.onrender.com'
+
+// NOTE: DEVELOPMENT
+// axios.defaults.baseURL = 'https://localhost:4000'
 
 // ---------- CONTEXT ----------
 const PostContext = createContext({

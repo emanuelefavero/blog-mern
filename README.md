@@ -29,4 +29,6 @@ yarn install
 yarn start
 ```
 
+NOTE: Remember to comment and uncomment all urls that points to production (render url) and development (localhost) in client package.json (proxy), all context files, and all api calls in the client as well as server.js in the backend.
+
 - Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
