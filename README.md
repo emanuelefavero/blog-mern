@@ -6,7 +6,7 @@ A blog website where the admin can create blogs with markdown, edit, delete and 
 
 ## Live Demo
 
-[Blog API](https://blog-mern-client.onrender.com/)
+[https://blog-mern-client.onrender.com/](https://blog-mern-client.onrender.com/)
 
 ## Test the app locally on your machine
 
