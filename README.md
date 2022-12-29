@@ -1,6 +1,12 @@
-# Blog API
+# Blog MERN
 
-This is an assignment project from [the Odin Project](https://www.theodinproject.com/lessons/nodejs-blog-api). It is part of the full stack API section of their course.
+A blog website where the admin can create blogs with markdown, edit, delete and publish them. The user can view the blogs and comment on them
+
+> This was an assignment project from [the Odin Project](https://www.theodinproject.com/lessons/nodejs-blog-api). It is part of the full stack API section of their course.
+
+## Live Demo
+
+[Blog API](https://blog-mern-client.onrender.com/)
 
 ## Test the app locally on your machine
 
