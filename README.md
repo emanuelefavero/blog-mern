@@ -6,6 +6,8 @@ A blog website where the admin can create blogs with markdown, edit, delete and 
 
 ## Live Demo
 
+- PLEASE NOTE: The app is hosted on a free tier, so it may take up to **30 seconds to load**
+
 > **TEST USER:** username: `john`, password: `1234`
 
 [https://blog-mern-client.onrender.com/](https://blog-mern-client.onrender.com/)
