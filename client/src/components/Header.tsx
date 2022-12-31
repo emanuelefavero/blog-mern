@@ -1,13 +1,21 @@
 import styles from './Header.module.css'
 import { Link } from 'react-router-dom'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import UserContext from '../context/UserContext'
 
 function Header() {
-  const { user, logout } = useContext(UserContext)
+  const { user, getUser, logout } = useContext(UserContext)
+  const [showMessage, setShowMessage] = useState(false)
 
   useEffect(() => {
-    // getUser()
+    getUser()
+
+    // set timeout for 10 seconds and then hide the message
+    setShowMessage(true)
+    setTimeout(() => {
+      setShowMessage(false)
+    }, 10000)
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -21,6 +29,12 @@ function Header() {
               <span className={styles.adminBadge}>Admin</span>
             ) : (
               <span className={styles.userBadge}>{user?.username}</span>
+            )}
+
+            {showMessage && (
+              <span className={styles.fourthWallMessage}>
+                data could take 30 second to load, free server 😅...
+              </span>
             )}
           </span>
 

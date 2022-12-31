@@ -45,6 +45,13 @@
   top: -0.4rem;
 }
 
+.Header .fourthWallMessage {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: rgb(231, 12, 74);
+  margin-left: 1rem;
+}
+
 .Header button {
   background: none;
   padding: 0;
