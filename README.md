@@ -19,3 +19,7 @@ A blog website where the admin can create blogs with markdown, edit, delete and 
 ## Test the app locally on your machine
 
 - go to [blog-mern-local](https://github.com/emanuelefavero/blog-mern-local) repo and follow the instructions
+
+## License
+
+- [MIT](LICENSE.md)
